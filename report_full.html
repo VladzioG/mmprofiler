@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Data Profiler MM Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    h1 { color: #222; }
+    .card { border: 1px solid #ddd; padding: 16px; margin-bottom: 18px; border-radius: 8px; }
+    pre { background: #f7f7f7; padding: 10px; overflow: auto; }
+    table { border-collapse: collapse; }
+    td, th { border: 1px solid #ddd; padding: 6px 8px; }
+  </style>
+</head>
+<body>
+  <h1>Data Profiler MM Report</h1>
+
+  <div class="card">
+    <h2>General</h2>
+    <pre>{
+  &quot;total_rows&quot;: 15,
+  &quot;columns&quot;: [
+    &quot;url&quot;,
+    &quot;caption&quot;,
+    &quot;label&quot;,
+    &quot;price&quot;
+  ]
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Text analysis</h2>
+    <pre>{
+  &quot;caption&quot;: {
+    &quot;total&quot;: 15,
+    &quot;non_empty&quot;: 15,
+    &quot;empty_rows&quot;: 0,
+    &quot;avg_length&quot;: 48.33,
+    &quot;min_length&quot;: 38,
+    &quot;max_length&quot;: 60,
+    &quot;avg_tokens&quot;: 8.13,
+    &quot;top_words&quot;: [
+      [
+        &quot;a&quot;,
+        12
+      ],
+      [
+        &quot;with&quot;,
+        10
+      ],
+      [
+        &quot;and&quot;,
+        6
+      ],
+      [
+        &quot;on&quot;,
+        4
+      ],
+      [
+        &quot;in&quot;,
+        4
+      ],
+      [
+        &quot;street&quot;,
+        3
+      ],
+      [
+        &quot;people&quot;,
+        3
+      ],
+      [
+        &quot;bicycle&quot;,
+        3
+      ],
+      [
+        &quot;at&quot;,
+        2
+      ],
+      [
+        &quot;park&quot;,
+        2
+      ]
+    ]
+  }
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Image analysis</h2>
+    <pre>{
+  &quot;url&quot;: {
+    &quot;valid_files&quot;: 4,
+    &quot;missing_files&quot;: 0,
+    &quot;broken_files&quot;: 0,
+    &quot;formats&quot;: {
+      &quot;JPEG&quot;: 4
+    },
+    &quot;widths&quot;: [
+      352,
+      640,
+      640,
+      640
+    ],
+    &quot;heights&quot;: [
+      230,
+      428,
+      480,
+      388
+    ],
+    &quot;brightness&quot;: [
+      167.87262434123846,
+      102.84241262655763,
+      146.82258680555555,
+      131.36901712843644
+    ],
+    &quot;min_width&quot;: 352,
+    &quot;max_width&quot;: 640,
+    &quot;avg_width&quot;: 568.0,
+    &quot;min_height&quot;: 230,
+    &quot;max_height&quot;: 480,
+    &quot;avg_height&quot;: 381.5,
+    &quot;avg_brightness&quot;: 137.23
+  }
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Numeric analysis</h2>
+    <pre>{
+  &quot;price&quot;: {
+    &quot;count&quot;: 15,
+    &quot;total&quot;: 15,
+    &quot;missing&quot;: 0,
+    &quot;missing_percent&quot;: 0.0,
+    &quot;zeros&quot;: 7,
+    &quot;mean&quot;: 1133.0,
+    &quot;std&quot;: 3842.6152738541423,
+    &quot;min&quot;: 0.0,
+    &quot;25%&quot;: 0.0,
+    &quot;50%&quot;: 50.0,
+    &quot;75%&quot;: 275.0,
+    &quot;max&quot;: 15000.0,
+    &quot;skew&quot;: 3.851020344611471
+  }
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Multimodal checks</h2>
+    <pre>{
+  &quot;total_rows&quot;: 15,
+  &quot;missing_modalities_count&quot;: 0,
+  &quot;missing_modalities_percent&quot;: 0.0,
+  &quot;label_distribution&quot;: {
+    &quot;kitchen&quot;: 1,
+    &quot;street&quot;: 5,
+    &quot;park&quot;: 4,
+    &quot;living_room&quot;: 1,
+    &quot;playground&quot;: 1,
+    &quot;office&quot;: 1,
+    &quot;bedroom&quot;: 1,
+    &quot;school&quot;: 1
+  }
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Recommendations</h2>
+    <pre>{
+  &quot;text&quot;: {
+    &quot;caption&quot;: [
+      &quot;Ок.&quot;
+    ]
+  },
+  &quot;images&quot;: {
+    &quot;url&quot;: [
+      &quot;Ок.&quot;
+    ]
+  },
+  &quot;multimodal&quot;: [],
+  &quot;numeric&quot;: {
+    &quot;price&quot;: [
+      &quot;Сильна асиметрія розподілу (skew&gt;2). Розглянути лог-трансформацію.&quot;
+    ]
+  },
+  &quot;audio&quot;: {}
+}</pre>
+  </div>
+
+</body>
+</html>

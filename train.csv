@@ -1,0 +1,16 @@
+url,caption,label,price
+http://images.cocodataset.org/val2017/000000037777.jpg,"A kitchen with wooden cabinets, stove, and refrigerator.",kitchen,250
+http://images.cocodataset.org/val2017/000000252219.jpg,"Street scene with construction scaffolding and three people.",street,120
+http://images.cocodataset.org/val2017/000000087038.jpg,"People at a skate park, one doing tricks on a bicycle.",park,0
+http://images.cocodataset.org/val2017/000000174482.jpg,"Blue bicycle parked on a city street with traffic lights.",street,75
+http://images.cocodataset.org/val2017/000000037775.jpg,"Living room with sofa, TV, and coffee table.",living_room,300
+http://images.cocodataset.org/val2017/000000252220.jpg,"Children playing on a playground with swings and slides.",playground,0
+http://images.cocodataset.org/val2017/000000087039.jpg,"Dog running in a park with people nearby.",park,0
+http://images.cocodataset.org/val2017/000000174483.jpg,"Red car parked near a building in urban area.",street,15000
+http://images.cocodataset.org/val2017/000000037778.jpg,"Office workspace with computer, keyboard, and chair.",office,800
+http://images.cocodataset.org/val2017/000000252221.jpg,"Crowd waiting at a bus stop on a rainy day.",street,0
+http://images.cocodataset.org/val2017/000000087040.jpg,"Skateboarder jumping over a ramp with graffiti.",park,0
+http://images.cocodataset.org/val2017/000000174484.jpg,"Bicycle lane along a city street with traffic.",street,50
+http://images.cocodataset.org/val2017/000000037779.jpg,"Bedroom with bed, nightstand, and lamp.",bedroom,400
+http://images.cocodataset.org/val2017/000000252222.jpg,"Children reading books in a classroom.",school,0
+http://images.cocodataset.org/val2017/000000087041.jpg,"Skater performing tricks in an urban skatepark.",park,0
