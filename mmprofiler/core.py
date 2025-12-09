@@ -13,12 +13,10 @@ from .detectors_numeric import analyze_numeric_column, summarize_numeric_columns
 from .detectors_audio import analyze_audio_column
 from .multimodal import multimodal_consistency_checks
 from .report import generate_html_report
-
-# optional: requests used in detectors_image via core.prepare_images helper
 try:
-    import requests  # noqa: F401
+    import requests 
 except Exception:
-    requests = None  # detectors will raise if needed
+    requests = None  
 
 
 @dataclass
@@ -34,8 +32,7 @@ class ProfileResult:
 
 class MMProfiler:
     """
-    Чистий і компактний профайлер для мультимодальних датасетів.
-    Методи:
+   Profiler:
       - run(...) — повний прогін (text, image, numeric, audio)
       - analyze_text(column)
       - analyze_images(column, sample_images=...)
@@ -50,7 +47,6 @@ class MMProfiler:
         self.result: Optional[ProfileResult] = None
         self._tmp_dir: Optional[str] = None
 
-    # --- helpers for downloading (used only for image URLs) ---
     def _ensure_tmp(self):
         if self._tmp_dir is None:
             self._tmp_dir = tempfile.mkdtemp(prefix="mmprofiler_")
@@ -63,9 +59,6 @@ class MMProfiler:
                 pass
         self._tmp_dir = None
 
-    # --------------------------
-    # compatibility wrappers (single-column)
-    # --------------------------
     def analyze_text(self, column_name: str) -> Dict[str, Any]:
         return self._analyze_text_single(column_name)
 
@@ -81,13 +74,10 @@ class MMProfiler:
     def generate_html_report(self, output_file: str = "report.html"):
         """Сумісність зі старим API"""
         if self.result is None:
-            # зробити мінімальний run (автовизначення колонок)
+            
             self.run()
         return self.to_html(output_file)
-
-    # --------------------------
     # internal single-column analyzers (use detector modules)
-    # --------------------------
     def _analyze_text_single(self, column_name: str) -> Dict[str, Any]:
         try:
             info = analyze_text_column(self.df[column_name])
@@ -111,21 +101,17 @@ class MMProfiler:
         # prepare local series (detectors_image supports local paths)
         series = self.df[column_name] if column_name in self.df.columns else pd.Series(dtype=object)
 
-        # For simplicity — reuse earlier pattern: try to download a sample of URLs into a tmp folder
-        local_paths = []
-        # create temp dir only if needed
         for i, v in enumerate(series.fillna("").astype(str)):
             if not v:
                 continue
             if v.lower().startswith("http://") or v.lower().startswith("https://"):
                 if not download_remote:
                     continue
-                # lazy import here to avoid hard dependency at module import time
                 try:
                     import requests
                 except Exception:
                     return {"error": "requests not installed (needed to download image URLs). Install with pip install requests."}
-                # create tmp dir once
+       
                 self._ensure_tmp()
                 try:
                     r = requests.get(v, timeout=6)
@@ -200,9 +186,7 @@ class MMProfiler:
             self.result.numeric[column_name] = info
         return info
 
-    # --------------------------
     # Tabular summary
-    # --------------------------
     def summarize_tabular(self, include_numeric: bool = True) -> Dict[str, Any]:
         summary = {}
         for col in self.df.columns:
@@ -226,9 +210,7 @@ class MMProfiler:
                     self.result.numeric[col] = summary[col]["numeric_summary"]
         return summary
 
-    # --------------------------
     # Main run + output
-    # --------------------------
     def run(self,
             text_cols: Optional[List[str]] = None,
             image_cols: Optional[List[str]] = None,
@@ -297,9 +279,7 @@ class MMProfiler:
         generate_html_report(self.result, output_file)
         return output_file
 
-    # --------------------------
     # Recommendations
-    # --------------------------
     def _make_recommendations(self, text_report, image_report, mm_checks, numeric_report, audio_report):
         recs: Dict[str, Any] = {"text": {}, "images": {}, "multimodal": [], "numeric": {}, "audio": {}}
 
@@ -353,3 +333,4 @@ class MMProfiler:
                 recs["audio"][col] = ["Ок."]
 
         return recs
+
